@@ -103,3 +103,40 @@ these states, reaching towards the goal.
 	- Interior region where every state has been expanded.
 	- Exterior region of states that have not yet been reached.
 - Best-First Search - Choose a node with minimum value of evaluation function f(n).
+- A search algorithm is called graph search if it checks for redundant paths and a tree like search
+if it does not check.
+- performance Measures for problem solving agents
+	- Completeness - Ability of the algorithm to find a solution when there is one and to correctly
+	report failure when there is not.
+	- Cost Optimality
+	- Time and Space Complexity
+- BFS
+	- Early goal test is checking whether a node is a solution as soon as it is generated.
+	- Late goal test is waiting until a node is popped off the queue.
+	- Always finds solution with a minimal number of actions.
+	- Cost optimal if all actions have same cost.
+	- Time and Space Complexity = O(b^d)
+- Dijkstra or Uniform-cost search
+	- Complete
+	- Cost optimal in every case
+	- Time and space Complexity = O(b^(1 + floor(C*/e))) where C* is optimal cost and e is
+	lower bound on the cost of each action.
+	- All action costs same, then it is essentially BFS.
+- DFS
+	- Incomplete
+	- Space complexity = O(bm)
+	- Time Complexity = O(b^m)
+	- Not optimal
+- Depth-limited
+	- Version of DFS where we supply a depth limit, l and tread all nodes at depth l as if they
+	had no successors.
+	- Time complexity = O(b^l)
+	- Space complexity = O(bl)
+- Iterative deepening
+	- Iteratively try different depth limiting values
+	- Time complexity = either O(b^d) or O(b^m)
+	- Space complexity = either O(bd) or O(bm)
+- Hybrid Approach
+	- Runs BFS until almost all memory is consumes and then runs iterative deepening from all nodes
+	in the frontier.
+- Bidirectional search (Self-explanatory)
