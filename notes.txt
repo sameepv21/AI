@@ -1,5 +1,7 @@
 15.09.2022 07:07
 
+############################ CHAPTER 2 - INTELLIGENT AGENTS ##########################
+
 - AI is any system that has the ability to think "rationally".
 - Turing test approach
 	- Requirements include NLP, knowledge representation, automated reasoning, machine learning, compution vision and speech recognition and robotics.
@@ -13,24 +15,91 @@
 - Agent function is an abstract mathematical description whereas agent program is a concrete implementation, running within some physical system.
 - Conseqeuntialism means we evaluate an agent's behaviour by its consequences.
 - Formal definition of rational agent
-	- For each possible percepts, it should select an action that is expected to maximize its PM, given the evidence provided by the percepts and whatever built-in knowledge the agent has.
+	- For each possible percepts, it should select an action that is expected to maximize its PM, given the evidence provided by the percepts and 
+	whatever built-in knowledge the agent has.
 - Task env. are the "problems" to which rational agents are the "solutions".
 - PEAS - Performance, Env., Actuators and Sensors. This is description of the env.
-- Fully Observable env. means agent's sensor give it access to ethe complete state of the env. at each point in time.
+- Fully Observable env. means agent's sensor give it access to ethe complete state of the env. at 
+each point in time.
 	- Need not maintain any internal state to keep track of the world.
 - Single vs multi agent
-- Deterministic env. means that the next state of env. is completely determined by the current state and the action executed by the agent(s).
+- Deterministic env. means that the next state of env. is completely determined by the current state
+and the action executed by the agent(s).
 - Episodic env. means the agent's experience is divided into atomic episoed.
 	- The next episode doesn't depend on the actions taken in previous episode.
 - Dynamic env. is the env. that changes itself while an agnet is deliberating.
 - Semidynamic means agent's performance score changed but env. itself doesn't change.
 - Discrete vs continuous (time related)
-- Known env. means that the outcomes for all actions are given or agent knows about the laws of physics of the env.
-- Agent architecture means a computing device with physical sensors and actuators on which agent program will run.
+- Known env. means that the outcomes for all actions are given or agent knows about the laws of physics
+of the env.
+- Agent architecture means a computing device with physical sensors and actuators on which agent 
+program will run.
 - Table size for table driven approach is sum(from 1 to T of |P|^t)
-- Simple reflex agent selects actions on the basis of the current percept, ignoring the rest of the percept history.
+- Simple reflex agent selects actions on the basis of the current percept, ignoring the rest of the 
+percept history.
 	- Works only if env. is fully oberservable.
 - Model-based reflex agents keep track of the part of the world it can't see now.
 	- Done by maintaining some sort of internal state that depends on the percept history.
 - Transition model is all about the knowledge about "how the world works".
 - Sensor model is all about how the state of the world is reflected in the agent's percepts.
+- Goal based agent require some sort of goal information that describes situations that are desirable 
+in addition to current state description.
+	- Uses search and planning
+	- Less efficient but more flexible
+- Utility based agent quantifies happiness along with reaching goal.
+- An agent's utility function is internalization of the performance measure.
+	- Usefull when there are conflicting or multiple goals
+	- In real world, expected utility is maximized
+- Any type of agent can be built into learning agent by teaching them.
+- Learning element is responsible for making improvements
+- Performance element is responsible for selecting external actions.
+- The critic tells the learning element how well the agent is doing with respect to a fixed 
+performance standard.
+- Problem generator is responsible for suggesting actions that will lead to new and informative
+experiences.
+- Representations of agent programs
+	- Atomic - World is indivisible, no internal structure.
+	- Factored - Splits each state into a fixed set of variables or attributes, each of which
+	can have a value.
+	- Structures - Objects and their various and varying relationships are described explicitly.
+
+
+15.09.2022 11:34
+
+############################ CHAPTER 3 - SEARCH ########################################
+
+- Problem-solving agent is an agent that "plans ahead" and considers a sequence of actions that
+form a path to a goal state when the correct action to take is not immediately obvious.
+	- Use atomic representations
+	- Process used is called search
+- Planning agents use factored or structured representations of states
+- Informed search algorithms are those in which the agent can estimate how far it is from the goal.
+- Uninformed search algorithms are opposite of informed search.
+- 4 phases of problem-solving agent
+	- Goal Formulation
+	- Problem Formulation
+	- Search
+	- Execution
+- Defintion of search problem
+	- State Space - Set of all possible states that the env. can be in
+	- Initial state
+	- Set of Goal state
+	- Actions
+	- Transition model - What each action does (in short - result)
+	- Action cost
+- Path is sequence of actions and solution is a path from initial state to the goal state.
+- Optimal solution has the lowest path cost among all solutions.
+- Abstraction is the process of removing detail from a representation.
+	- A good problem formulation has the right level of detail.
+	- The choice of good abstraction involves removing as much detail as possible while retaining
+	validity and ensuring that the abstract actions are easy to carry out.
+- Standardized problem is illustrated or example problem whereas real world problem is one whose 
+solutions people actually use.
+- Each node in search tree corresponds to a state in the state space and edges correspond to actions.
+- Root of the tree is initial state of the problem.
+- State space describes set of states and the actions while search tree describes the paths between
+these states, reaching towards the goal.
+- Frontier nodes separates two regions of the state space graph.
+	- Interior region where every state has been expanded.
+	- Exterior region of states that have not yet been reached.
+- Best-First Search - Choose a node with minimum value of evaluation function f(n).
