@@ -140,3 +140,45 @@ if it does not check.
 	- Runs BFS until almost all memory is consumes and then runs iterative deepening from all nodes
 	in the frontier.
 - Bidirectional search (Self-explanatory)
+- h(n) - Estimated cost of the cheapest path from the state at node n to a goal state.
+- Greedy Best First Search
+	- Expands first node with lowest h(n) value.
+	- Evaluation function f(n) = h(n)
+	- Complete in finite state space and not otherwise
+	- Time and space complexity = O(b^m) but can be reduced to O(bm) with good heuristic
+- A* Search
+	- Evaluation function f(n) = g(n) + h(n)
+	- Here, g(n) is the path cost from the initial state to node n and h(n) is the estimated cost
+	of the shortest path from n to a goal state.
+	- f(n) is the estimated cost of the best path that continues from n to a goal state.
+	- Complete
+	- Cost optimal if heuristic is admissible (one that never overestimates the cost to reach goal)
+	- Consistency - h(n) <= c(n,a,n') + h(n')
+	- Optimally effience as algorithm that extends search paths from initial state and uses the 
+	same heuristic information, must expand all nodes that are surely expanded by A*
+	- Prunes away search tree nodes that are not necessary for finding an optimal solution.
+- Satisficing search
+	- Willing to accept sub optimal search but are good enough.
+	- Allow A* to use inadmissible heuristic
+	- Eg. Detour index for routes --> Weighted A* f(n) = g(n) + W * h(n)
+- Bounded Suboptimal search, bounded cost search, unbounded cost search and Memory bounded search
+- Beam search
+	- Limits the size of frontier and keeps only k nodes with the best f-scores.
+	- Incomplete
+	- Suboptimal
+	- Alternatively - keep strict limit on the size of the frontier but instead keeps every
+	node whose f-score is within delta of the best f-score.
+- IDA*
+	- Cut off is f-cost. At each iteration, the cut off value is the smallest f-cost of any node
+	that exceeded the cutoff on the previous iteration.
+- RBDS (Recursive best-first search)
+	- Uses f_limit to keep track of f-score.
+	- More efficient than IDA*
+	- Optimal if heuristic is admissible.
+- SMA* (Simplified Memory bounded A*) and bidirectional heuristic search
+- Quality assurance for heuristic is through effective branching factor.
+- A problem with fewer restrictions on the actions is called a relaxed problem.
+- State space graph of the relaxed problem is a supergraph of the original state space because the
+removal of restrictions creates added edges in the graph.
+- Cost of an optimal solution to a relaxed problem is an admissible heuristic for the original problem.
+- If a collection of admissible heuristics is available for a problem then choose the maximum of them.
