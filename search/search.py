@@ -89,48 +89,44 @@ def depthFirstSearch(problem: SearchProblem):
     "*** YOUR CODE HERE ***"
 
     # Define required imports
-    from game import Directions
     from util import Stack
-    import time
 
     # Define required variables
     visited = []
     stack = Stack()
-    flag = False
     actions = []
 
     """
         getStartState() --> No parameters, Returns the initial coordinate of pacman
         isGoalState() --> Takes the state i.e coordinates as parameter, Returns boolean
         getSuccessors() --> Takes the state as parameter, Returns list of next (child) states, direction and action costs
+
+        Here, instead of passing actions, we pass the whole array/list of actions required for reaching a particular goal.
     """
 
     # Initial state
-    stack.push((problem.getStartState(), "")) # passing empty actions
+    stack.push((problem.getStartState(), [])) # passing empty actions
 
     # DFS (Complete version)
     while(not stack.isEmpty()):
-        currentState, action = stack.pop()
+        currentState, actions = stack.pop()
 
         visited.append(currentState)
-        if(len(action) != 0):
-            print('Current State: ', currentState)
-            # print("ACTION IS: ", action)
-            actions.append(action)
 
-        # check whether current state is goal state
+        # return list of actions that reach goal state
         if(problem.isGoalState(currentState)):
-            print(currentState)
-            actions.append("Stop")
+            print(actions)
+            return actions
 
         # DFS
         for child in problem.getSuccessors(currentState):
             # child[0] is the state and child[1] is the action
             if child[0] not in visited:
-                print("Child State", child[0])
-                stack.push((child[0], child[1]))
-    
-    return actions
+                if(len(actions) == 0):
+                    actionsForParticularState = [child[1]]
+                else:
+                    actionsForParticularState = actions + [child[1]]
+                stack.push((child[0], actionsForParticularState))
 
 def breadthFirstSearch(problem: SearchProblem):
     """Search the shallowest nodes in the search tree first."""
