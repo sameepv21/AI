@@ -121,7 +121,7 @@ def depthFirstSearch(problem: SearchProblem):
 
         # DFS
         for child in problem.getSuccessors(currentState):
-            # child[0] is the state and child[1] is the action
+            # child[0] is the state and child[1] is the action and child[2] is the cost
             if child[0] not in visited:
                 if(len(actions) == 0):
                     actionsForParticularState = [child[1]]
