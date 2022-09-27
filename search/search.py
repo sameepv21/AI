@@ -91,17 +91,12 @@ def depthFirstSearch(problem: SearchProblem):
     # Define required imports
     from game import Directions
     from util import Stack
-
-    # Define required directions
-    n = Directions.NORTH
-    s = Directions.SOUTH
-    e = Directions.EAST
-    w = Directions.WEST
-    st = Directions.STOP
+    import time
 
     # Define required variables
     visited = []
     stack = Stack()
+    flag = False
     actions = []
 
     """
@@ -117,28 +112,24 @@ def depthFirstSearch(problem: SearchProblem):
     while(not stack.isEmpty()):
         currentState, action = stack.pop()
         print('Current State: ', currentState)
+        print("ACTION IS: ", action)
 
         visited.append(currentState)
-        if(action == "South"):
-            actions.append(s)
-        elif(action == "North"):
-            actions.append(n)
-        elif(action == "East"):
-            actions.append(e)
-        elif(action == "West"):
-            actions.append(w)
+        if(len(action) != 0):
+            actions.append(action)
 
-        # check whether current state is 
+        # check whether current state is goal state
         if(problem.isGoalState(currentState)):
-            actions.append(st)
-            break
+            actions.append("Stop")
 
         # DFS
         for child in problem.getSuccessors(currentState):
-            print("Child State and Direction: ", child[0], " ", child[1])
             if(child[0] not in visited):
+                print("Child State and Direction: ", child[0], " ", child[1])
+                # child[0] is the state and child[1] is the action
                 stack.push((child[0], child[1]))
     
+    print(actions)
     return actions
 
 def breadthFirstSearch(problem: SearchProblem):
