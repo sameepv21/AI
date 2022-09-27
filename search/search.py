@@ -111,25 +111,25 @@ def depthFirstSearch(problem: SearchProblem):
     # DFS (Complete version)
     while(not stack.isEmpty()):
         currentState, action = stack.pop()
-        print('Current State: ', currentState)
-        print("ACTION IS: ", action)
 
         visited.append(currentState)
         if(len(action) != 0):
+            print('Current State: ', currentState)
+            # print("ACTION IS: ", action)
             actions.append(action)
 
         # check whether current state is goal state
         if(problem.isGoalState(currentState)):
+            print(currentState)
             actions.append("Stop")
 
         # DFS
         for child in problem.getSuccessors(currentState):
-            if(child[0] not in visited):
-                print("Child State and Direction: ", child[0], " ", child[1])
-                # child[0] is the state and child[1] is the action
+            # child[0] is the state and child[1] is the action
+            if child[0] not in visited:
+                print("Child State", child[0])
                 stack.push((child[0], child[1]))
     
-    print(actions)
     return actions
 
 def breadthFirstSearch(problem: SearchProblem):
