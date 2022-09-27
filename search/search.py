@@ -17,6 +17,7 @@ In search.py, you will implement generic search algorithms which are called by
 Pacman agents (in searchAgents.py).
 """
 
+from re import L
 import util
 
 class SearchProblem:
@@ -115,7 +116,6 @@ def depthFirstSearch(problem: SearchProblem):
 
         # return list of actions that reach goal state
         if(problem.isGoalState(currentState)):
-            print(actions)
             return actions
 
         # DFS
@@ -165,7 +165,42 @@ def breadthFirstSearch(problem: SearchProblem):
 def uniformCostSearch(problem: SearchProblem):
     """Search the node of least total cost first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+
+    # Import required libraries
+    from util import PriorityQueue
+
+    # Declare required variables
+    actions = []
+    visited = []
+    priorityQueue = PriorityQueue()
+
+    # Initial State
+    """
+        There are 2 parameters to priority queue viz data and priority where data represents the data for which
+        priority needs to be decided and priority is self explanatory
+
+        For data, list is passed containing current state (initially only starting state), list of actions to
+        reach that state and its cost
+    """
+    priorityQueue.push((problem.getStartState(), [], 0), 1)
+
+    # UCS
+    while not priorityQueue.isEmpty():
+        currentState, actions, prevCost = priorityQueue.pop()
+
+        visited.append(currentState)
+
+        if(problem.isGoalState(currentState)):
+            return actions
+
+        for child in problem.getSuccessors(currentState):
+            if child[0] not in visited:
+                if(len(actions) == 0):
+                    actionsForParticularState = [child[1]]
+                else:
+                    actionsForParticularState = actions + [child[1]]
+                cost = prevCost + child[2]
+                priorityQueue.push((child[0], actionsForParticularState, cost), cost)
 
 def nullHeuristic(state, problem=None):
     """
